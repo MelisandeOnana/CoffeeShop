@@ -28,9 +28,14 @@
         <h1 class="text-white text-[62px] font-bold font-[Rancho] drop-shadow-lg text-center flex-grow">
             Coffeera
         </h1>
-        <!-- Bouton à droite -->
-        <a href="{{ path('admin_index') }}">
-            <button type="button" class="px-5 py-2.5 rounded-lg text-[1.875rem] tracking-wider font-medium border border-current outline-none bg-white hover:bg-transparent text-[#6f4e37] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">Administration</button>
-        </a>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_index') }}">Administration</a>
+            {% endif %}
+            <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Connexion</a>
+        {% endif %}
     </div>
 </header>

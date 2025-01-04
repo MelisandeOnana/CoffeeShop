@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractController
+class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
@@ -17,19 +17,19 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        // Check if the user is already authenticated
-        if ($this->getUser()) {
-            $this->addFlash('success', 'Connexion réussie !');
+         // Add flash message for successful login and redirect to homepage
+         if (!$error && $lastUsername) {
+            $this->addFlash('success', 'Vous êtes connecté.');
             return $this->redirectToRoute('home_index');
         }
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('login/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route('/logout', name: 'app_logout')]
     public function logout(): void
     {
         // controller can be blank: it will never be executed!
