@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold mb-6 text-center">Liste des produits</h1>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+                <tr class="bg-gray-100 border-b">
+                    <th class="py-2 px-4 text-left">Nom</th>
+                    <th class="py-2 px-4 text-left">Prix</th>
+                    <th class="py-2 px-4 text-left">Catégorie</th>
+                    <th class="py-2 px-4 text-left">Marque</th>
+                    <th class="py-2 px-4 text-left">Image</th>
+                    <th class="py-2 px-4 text-left">Note</th>
+                    <th class="py-2 px-4 text-left">Pays</th>
+                    <th class="py-2 px-4 text-left">Famille</th>
+                    <th class="py-2 px-4 text-left">Meilleure vente</th>
+                    <th class="py-2 px-4 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr class="border-b">
+                    <td class="py-2 px-4">{{ product.name }}</td>
+                    <td class="py-2 px-4">{{ product.price }}</td>
+                    <td class="py-2 px-4">{{ product.category }}</td>
+                    <td class="py-2 px-4">{{ product.brand }}</td>
+                    <td class="py-2 px-4"><img src="{{ asset('uploads/images/' ~ product.image) }}" alt="{{ product.name }}" class="w-16 h-16 object-cover"></td>
+                    <td class="py-2 px-4">{{ product.note }}</td>
+                    <td class="py-2 px-4">{{ product.country }}</td>
+                    <td class="py-2 px-4">{{ product.family }}</td>
+                    <td class="py-2 px-4">{{ product.bestSeller ? 'Oui' : 'Non' }}</td>
+                    <td class="py-2 px-4">
+                        <a href="{{ path('admin_product_edit', {'id': product.id}) }}" class="text-yellow-500 hover:underline ml-2">Modifier</a>
+                        <form method="post" action="{{ path('admin_product_delete', {'id': product.id}) }}" style="display:inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                            <button class="text-red-500 hover:underline ml-2">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6">
+        <a href="{{ path('admin_product_new') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Créer un nouveau produit</a>
+    </div>
+
+    <div class="mt-6 flex justify-center">
+        {% if currentPage > 1 %}
+            <a href="{{ path('admin_product_index', {'page': currentPage - 1}) }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Précédent</a>
+        {% endif %}
+
+        {% for i in 1..totalPages %}
+            <a href="{{ path('admin_product_index', {'page': i}) }}" class="px-4 py-2 mx-1 {{ currentPage == i ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700' }} rounded-md hover:bg-gray-400">{{ i }}</a>
+        {% endfor %}
+
+        {% if currentPage < totalPages %}
+            <a href="{{ path('admin_product_index', {'page': currentPage + 1}) }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Suivant</a>
+        {% endif %}
+    </div>
+{% endblock %}

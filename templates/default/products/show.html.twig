@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="font-sans tracking-wide max-w-7xl mx-auto">
+    <div class="bg-white md:min-h-[600px] grid items-start grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="h-full">
+            <div class="p-4 relative h-full flex items-center justify-center">
+                <img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="lg:w-4/5 w-full h-full rounded-xl object-contain" />
+            </div>
+        </div>
+        <div class="bg-gradient-to-r from-brown-600 via-brown-600 to-brown-700 py-6 px-8 h-full">
+            <div>
+                <h2 class="sm:text-3xl text-2xl font-semibold text-[#6f4e37]">{{ product.name }}</h2>
+                <p class="text-sm text-brown-200 mt-2">{{ product.family }}</p>
+            </div>
+            <div>
+                <h1 class="text-[#6f4e37]sm:text-2xl text-xl mt-4">Description</h1>
+                <p class="text-brown-200 mt-2">{{ product.brand.name }}</p>
+                <p class="text-brown-200 mt-2">{{ product.category.name }}</p>
+                <p class="text-sm text-brown-200 mt-2">{{ product.country }}</p>
+                <p class="text-sm text-brown-200 mt-2">{{ product.bestSeller ? 'Best Seller' : '' }}</p>
+            </div>
+            <div class="flex flex-wrap gap-4 justify-between mt-8">
+                <h3 class="text-[#6f4e37] sm:text-4xl text-3xl">{{ product.price }} €</h3>
+                <div class="flex items-center space-x-2">
+                   <p class="text-[#6f4e37]">{{ product.note }}/20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

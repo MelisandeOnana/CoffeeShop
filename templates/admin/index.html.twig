@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold mb-6 text-brown-800 mt-9 text-center">Administration</h1>
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div class="space-y-4">
+            <a href="{{ path('admin_product_index') }}" class="block bg-[#6f4e37] text-white px-4 py-2 rounded hover:bg-[#5a3e36] text-center transition duration-300">Gérer les produits</a>
+            <a href="{{ path('admin_slider_index') }}" class="block bg-[#6f4e37] text-white px-4 py-2 rounded hover:bg-[#5a3e36] text-center transition duration-300">Gérer les sliders</a>
+            <a href="{{ path('admin_contact_index') }}" class="block bg-[#6f4e37] text-white px-4 py-2 rounded hover:bg-[#5a3e36] text-center transition duration-300">Gérer les demandes de contact</a>
+            <a href="{{ path('admin_category_index') }}" class="block bg-[#6f4e37] text-white px-4 py-2 rounded hover:bg-[#5a3e36] text-center transition duration-300">Gérer les catégories</a>
+            <a href="{{ path('admin_brand_index') }}" class="block bg-[#6f4e37] text-white px-4 py-2 rounded hover:bg-[#5a3e36] text-center transition duration-300">Gérer les marques</a>
+        </div>
+    </div>
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md mt-6">
+        <h2 class="text-xl font-semibold mb-4 text-center">Statistiques</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalProducts }}</p>
+                <p class="text-gray-600">Produits</p>
+            </div>
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalContacts }}</p>
+                <p class="text-gray-600">Demandes de contact</p>
+            </div>
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalSliders }}</p>
+                <p class="text-gray-600">Sliders</p>
+            </div>
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalCategories }}</p>
+                <p class="text-gray-600">Catégories</p>
+            </div>
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalBrands }}</p>
+                <p class="text-gray-600">Marques</p>
+            </div>
+            <div class="bg-[#f3f4f6] p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold">{{ totalAdmins }}</p>
+                <p class="text-gray-600">Adminstrateurs</p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

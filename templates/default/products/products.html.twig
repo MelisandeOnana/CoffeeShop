@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-6 py-8">
+    <h1 class="text-4xl text-brown-600 font-bold text-center mb-8">Liste des produits</h1>
+
+    <!-- Filtres -->
+    <div class="filters bg-brown-50 p-6 rounded-lg shadow-lg mb-8">
+        <h2 class="text-2xl font-semibold text-brown-700 mb-4">Filtrer les produits</h2>
+        {{ form_start(form, {'method': 'GET'}) }}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+                {{ form_label(form.brand, null, {'label_attr': {'class': 'text-brown-600 font-semibold'}}) }}
+                {{ form_widget(form.brand, {'attr': {'class': 'form-control bg-white border border-brown-300 rounded-lg p-2 text-brown-600'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.category, null, {'label_attr': {'class': 'text-brown-600 font-semibold'}}) }}
+                {{ form_widget(form.category, {'attr': {'class': 'form-control bg-white border border-brown-300 rounded-lg p-2 text-brown-600'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.price_min, null, {'label_attr': {'class': 'text-brown-600 font-semibold'}}) }}
+                {{ form_widget(form.price_min, {'attr': {'class': 'form-control bg-white border border-brown-300 rounded-lg p-2 text-brown-600'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.price_max, null, {'label_attr': {'class': 'text-brown-600 font-semibold'}}) }}
+                {{ form_widget(form.price_max, {'attr': {'class': 'form-control bg-white border border-brown-300 rounded-lg p-2 text-brown-600'}}) }}
+            </div>
+        </div>
+        <button type="submit" class="mt-4 px-4 py-2 bg-brown-500 text-white font-semibold rounded-lg hover:bg-brown-600 transition duration-200">Filtrer</button>
+        {{ form_end(form) }}
+    </div>
+
+    <!-- Liste des produits -->
+    <div class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for product in products %}
+            <div class="product bg-white border border-brown-300 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-200">
+                <img src="{{ asset(product.image) }}" alt="{{ product.name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h2 class="text-xl text-brown-700 font-bold mb-2">{{ product.name }}</h2>
+                <p class="text-brown-600 mb-2">Prix : <span class="font-semibold">{{ product.price }} €</span></p>
+                <p class="text-brown-600 mb-2">Note : <span class="font-semibold">{{ product.note }}</span></p>
+                <p class="text-brown-600 mb-2">Famille : <span class="font-semibold">{{ product.family }}</span></p>
+                <p class="text-brown-600 mb-2">Pays : <span class="font-semibold">{{ product.country }}</span></p>
+                <p class="text-brown-600 mb-2">Best Seller : <span class="font-semibold">{{ product.bestSeller ? 'Oui' : 'Non' }}</span></p>
+                <a href="{{ path('product_show', {'id': product.id}) }}" class="block bg-brown-500 text-white font-semibold text-center py-2 rounded-lg hover:bg-brown-600 transition duration-200">Voir le produit</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <ul class="flex space-x-2 justify-center mt-8">
+        {% if currentPage > 1 %}
+            <li class="w-10 h-10 flex items-center justify-center bg-brown-200 rounded-full hover:bg-brown-300">
+                <a href="{{ path('products', {page: currentPage - 1}) }}" class="text-brown-700 font-bold">&larr;</a>
+            </li>
+        {% endif %}
+        {% for i in 1..totalPages %}
+            <li class="w-10 h-10 flex items-center justify-center {{ currentPage == i ? 'bg-brown-500 text-white' : 'bg-brown-200 text-brown-700 hover:bg-brown-300' }} rounded-full">
+                <a href="{{ path('products', {page: i}) }}" class="font-bold">{{ i }}</a>
+            </li>
+        {% endfor %}
+        {% if currentPage < totalPages %}
+            <li class="w-10 h-10 flex items-center justify-center bg-brown-200 rounded-full hover:bg-brown-300">
+                <a href="{{ path('products', {page: currentPage + 1}) }}" class="text-brown-700 font-bold">&rarr;</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

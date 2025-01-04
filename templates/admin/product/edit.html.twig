@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le produit{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold mb-6 text-center">Modifier le produit</h1>
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        {{ form_start(form) }}
+            <div class="space-y-4">
+                {{ form_row(form.name, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.price, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.category, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.brand, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.image, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500', 'type': 'file'}}) }}
+                <div class="mt-4">
+                    <label for="image_preview" class="block text-sm font-medium text-gray-700">Aperçu de l'image</label>
+                    <img id="image_preview" src="{{ asset('images/' ~ form.vars.value.image) }}" alt="{{product.image}}" class="mt-2 w-full h-auto rounded-lg shadow-md">
+                </div>
+                {{ form_row(form.note, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.country, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.family, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+                {{ form_row(form.bestSeller, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+            </div>
+            <div class="mt-6">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enregistrer</button>
+            </div>
+        {{ form_end(form) }}
+
+        <div class="mt-6">
+            <a href="{{ path('admin_product_index') }}" class="text-blue-500 hover:underline">Retour à la liste</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('form_image').addEventListener('change', function(event) {
+            const [file] = event.target.files;
+            if (file) {
+                document.getElementById('image_preview').src = URL.createObjectURL(file);
+            }
+        });
+    </script>
+{% endblock %}

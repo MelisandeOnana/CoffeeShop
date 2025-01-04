@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle catégorie{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold mb-6 text-center">Créer une nouvelle catégorie</h1>
+
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }} bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-md">
+            {% for message in messages %}
+                <p class="font-medium">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        {{ form_start(form) }}
+            <div class="space-y-4">
+                {{ form_row(form.name, {'attr': {'class': 'block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+            </div>
+            <div class="mt-6">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enregistrer</button>
+            </div>
+        {{ form_end(form) }}
+
+        <div class="mt-6">
+            <a href="{{ path('admin_category_index') }}" class="text-blue-500 hover:underline">Retour à la liste</a>
+        </div>
+    </div>
+{% endblock %}

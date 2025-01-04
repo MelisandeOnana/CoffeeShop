@@ -1,0 +1,72 @@
+.custom-pagination {
+    top: 180px !important;
+}
+
+/* public/css/swiper-custom.css */
+.swiper-pagination-bullet {
+    background-color: #6f4e37 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #6f4e37 !important;
+}
+/* styles.css */
+.text-brown-800 {
+    color: #5a3e36;
+}
+
+.text-brown-700 {
+    color: #6b4a3d;
+}
+
+.text-brown-900 {
+    color: #4a2e2b;
+}
+
+.bg-brown-100 {
+    background-color: #d2b48c;
+}
+
+.bg-brown-200 {
+    background-color: #deb887;
+}
+
+.bg-brown-500 {
+    background-color: #8b4513;
+}
+
+.border-brown-500 {
+    border-color: #8b4513;
+}
+
+.fill-brown-300 {
+    fill: #a0522d;
+}
+
+.fill-brown-400 {
+    fill: #8b4513;
+}
+
+.fill-brown-800 {
+    fill: #5a3e2b;
+}
+
+.text-brown-700 {
+    color: #a0522d;
+}
+
+.text-brown-800 {
+    color: #5a3e2b;
+}
+
+.hover\:bg-brown-50:hover {
+    background-color: #f5f5dc;
+}
+
+.focus\:border-brown-500:focus {
+    border-color: #8b4513;
+}
+
+.focus\:ring-brown-500:focus {
+    outline-color: #8b4513;
+}

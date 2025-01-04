@@ -1,0 +1,36 @@
+<header class="bg-[#6f4e37] text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Menu à gauche -->
+        <div class="flex items-center">
+            <button class="text-white mr-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                    d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
+                    data-original="#000000"></path>
+                    <path
+                    d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
+                    data-original="#000000"></path>
+                </svg>
+            </button>
+            <ul class='flex gap-x-5 font-[Raleway]'>
+                <li>
+                    <a href='{{ path('home_index') }}' class='hover:text-gray-200 text-white block font-semibold text-[15px] transition duration-300'>Home</a>
+                </li>
+                <li>
+                    <a href='{{ path('products') }}' class='hover:text-gray-200 text-white block font-semibold text-[15px] transition duration-300'>Products</a>
+                </li>
+                <li>
+                    <a href='{{ path('contact') }}' class='hover:text-gray-200 text-white block font-semibold text-[15px] transition duration-300'>Contact Us</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Titre au centre -->
+        <h1 class="text-white text-[62px] font-bold font-[Rancho] drop-shadow-lg text-center flex-grow">
+            Coffeera
+        </h1>
+        <!-- Bouton à droite -->
+        <a href="{{ path('admin_index') }}">
+            <button type="button" class="px-5 py-2.5 rounded-lg text-[1.875rem] tracking-wider font-medium border border-current outline-none bg-white hover:bg-transparent text-[#6f4e37] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">Administration</button>
+        </a>
+    </div>
+</header>
