@@ -16,12 +16,14 @@ class ProductFilterType extends AbstractType
     {
         $builder
             ->add('brand', EntityType::class, [
+                'label' => 'Marque',
                 'class' => Brand::class,
                 'choice_label' => 'name',
                 'required' => false,
                 'placeholder' => 'Choisir une marque',
             ])
             ->add('category', EntityType::class, [
+                'label' => 'Catégorie',
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'required' => false,
