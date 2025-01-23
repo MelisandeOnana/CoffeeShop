@@ -23,12 +23,12 @@ class HomeController extends AbstractController
     {
         // ** Récupération des sliders et des produits
         $sliders = $sliderRepository->findAll();
-        $products = $productRepository->findAll();
+        $bestSellerProducts = $productRepository->findBy(['bestSeller' => true]);
 
         // ** Affichage de la vue
         return $this->render('default/index.html.twig', [
             'sliders' => $sliders,
-            'products' => $products,
+            'products' => $bestSellerProducts,
         ]);
     }
 
